@@ -18,14 +18,10 @@ public:
                 lists[i]=lists[i]->next;
             }
         }
-        if(v.empty())
-            return nullptr;
         sort(v.begin(),v.end());
         ListNode* ans=nullptr;
-        for(int i=v.size()-1;i>=0;i--){
-            ListNode* node=new ListNode(v[i],ans);
-            ans=node;
-        }
+        for(int i=v.size()-1;i>=0;i--)
+            ans=new ListNode(v[i],ans);
         return ans;
     }
 };
