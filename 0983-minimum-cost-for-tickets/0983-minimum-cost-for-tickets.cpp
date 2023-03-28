@@ -6,9 +6,9 @@ public:
             return 0;
         if(dp[i])
             return dp[i];
-        int j=upper_bound(days.begin(),days.end(),days[i])-days.begin();
-        int k=upper_bound(days.begin(),days.end(),days[i]+6)-days.begin();
-        int l=upper_bound(days.begin(),days.end(),days[i]+29)-days.begin();
+        int j=lower_bound(days.begin(),days.end(),days[i]+1)-days.begin();
+        int k=lower_bound(days.begin(),days.end(),days[i]+7)-days.begin();
+        int l=lower_bound(days.begin(),days.end(),days[i]+30)-days.begin();
         return dp[i]=min(min(costs[0]+rec(j,days,costs),costs[1]+rec(k,days,costs)),costs[2]+rec(l,days,costs));
     }
     int mincostTickets(vector<int>& days, vector<int>& costs) {
