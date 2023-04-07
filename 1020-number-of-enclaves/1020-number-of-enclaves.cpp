@@ -8,16 +8,6 @@ public:
         for(auto &d:dir)
             dfse(grid,i+d[0],j+d[1]);
     }
-    int dfs(vector<vector<int>>& grid,int i,int j){
-        grid[i][j]=0;
-        int res=1;
-        for(auto &d:dir){
-            int ni=i+d[0],nj=j+d[1];
-            if(grid[ni][nj])
-                res+=dfs(grid,ni,nj);
-        }
-        return res;
-    }
     int numEnclaves(vector<vector<int>>& grid) {
         int m=grid.size(),n=grid[0].size();
         for(int i=0;i<m;i++)
@@ -25,18 +15,8 @@ public:
                 if(!i||!j||i==m-1||j==n-1&&grid[i][j])
                     dfse(grid,i,j);
         int ans=0;
-        // for(int i=0;i<m;i++){
-        //     for(int j=0;j<n;j++)
-        //         cout<<grid[i][j]<<' ';
-        //     cout<<'\n';
-        // }
-        // cout<<'\n'<<'\n';
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(grid[i][j])
-                    ans+=dfs(grid,i,j);
-            }
-        }
+        for(int i=0;i<m;i++)
+            ans+=accumulate(grid[i].begin(),grid[i].end(),0);
         return ans;
     }
 };
