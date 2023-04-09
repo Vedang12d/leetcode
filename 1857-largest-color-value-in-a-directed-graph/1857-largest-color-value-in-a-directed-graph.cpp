@@ -18,7 +18,7 @@ public:
         while(!q.empty()){
             auto u=q.front();
             q.pop();
-            ans=max(ans,*max_element(col[u].begin(),col[u].end()));
+            ans=max(ans,col[u][colors[u]-'a']);
             nvis--;
             for(auto &v:adj[u]){
                 for(int i=0;i<26;i++)
