@@ -17,14 +17,12 @@ public:
             return 0;
         if(dp.count(root))
             return dp[root];
-        if(root->left and root->right)
-            return dp[root]=max(root->val+rec(root->left->left)+rec(root->left->right)+rec(root->right->left)+rec(root->right->right),rec(root->left)+rec(root->right));
-        else if(root->left)
-            return dp[root]=max(root->val+rec(root->left->left)+rec(root->left->right),rec(root->left)+rec(root->right));
-        else if(root->right)
-            return dp[root]=max(root->val+rec(root->right->left)+rec(root->right->right),rec(root->left)+rec(root->right));
-        else
-            return dp[root]=max(root->val,rec(root->left)+rec(root->right));
+        int val=root->val;
+        if(root->left)
+            val+=rec(root->left->left)+rec(root->left->right);
+        if(root->right)
+            val+=rec(root->right->right)+rec(root->right->left);
+        return dp[root]=max(val,rec(root->left)+rec(root->right));
     }
     int rob(TreeNode* root) {
         return rec(root);
