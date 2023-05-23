@@ -1,20 +1,21 @@
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
-template <class T> using oset=tree<T,null_type,greater_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
 class KthLargest {
 public:
-    oset<int> st;
     int k;
+    priority_queue<int,vector<int>,greater<int>> pq;
     KthLargest(int k, vector<int>& nums) {
-        for(auto &x:nums)
-            st.insert(x);
         this->k=k;
+        for(auto &x:nums){
+            pq.push(x);
+            if(pq.size()>k)
+                pq.pop();
+        }
     }
     
     int add(int val) {
-        st.insert(val);
-        return *(st.find_by_order(k-1));
+        pq.push(val);
+        if(pq.size()>k)
+            pq.pop();
+        return pq.top();
     }
 };
 
