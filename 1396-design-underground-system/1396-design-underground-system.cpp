@@ -11,13 +11,15 @@ public:
     }
     
     void checkOut(int id, string stationName, int t) {
-        time[mp[id].first+"_"+stationName].first+=t-mp[id].second;
-        time[mp[id].first+"_"+stationName].second++;
+        string s=mp[id].first+"_"+stationName;
+        time[s].first+=t-mp[id].second;
+        time[s].second++;
         mp.erase(id);
     }
     
     double getAverageTime(string startStation, string endStation) {
-        return time[startStation+"_"+endStation].first/time[startStation+"_"+endStation].second;
+        string s=startStation+"_"+endStation;
+        return time[s].first/time[s].second;
     }
 };
 
