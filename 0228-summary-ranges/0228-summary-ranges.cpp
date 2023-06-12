@@ -9,8 +9,8 @@ public:
             if(i==j)
                 ans.push_back(to_string(nums[i]));
             else
-                ans.push_back(to_string(nums[i])+"->"+to_string(nums[j]));
-            i=j;
+                ans.push_back(to_string(nums[i])+"->"+to_string(nums[i=j]));
+            // i=j;
         }
         return ans;
     }
