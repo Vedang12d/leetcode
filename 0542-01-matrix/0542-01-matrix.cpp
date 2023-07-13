@@ -45,15 +45,6 @@ void bfs(vector<vector<int>>&mat)
    
                     q.push({{x,y},i.second+1});
                 }
-                else if(mat[x][y]!=0 and vis[x][y]==1){
-                   
-                   if(mat[x][y]>(i.second+1) )
-                   {
-                    
-                 mat[x][y]=i.second+1;
-                       
-                   }
-                }
             }
         }
         
