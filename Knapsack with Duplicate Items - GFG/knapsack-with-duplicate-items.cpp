@@ -9,23 +9,22 @@ using namespace std;
 
 class Solution{
 public:
-    int N;
     vector<vector<int>> dp;
-    int bt(int i,int W,int val[],int wt[]){
-        if(i==N||!W)
+    int solve(int i, int w, int val[], int wt[]){
+        if(i<0)
             return 0;
-        if(dp[i][W]!=-1)
-            return dp[i][W];
-        int a=bt(i+1,W,val,wt);
-        if(wt[i]<=W)
-            a=max(a,val[i]+bt(i,W-wt[i],val,wt));
-        return dp[i][W]=a;
+        if(dp[i][w]!=-1)
+            return dp[i][w];
+        int pick=0;
+        if(w>=wt[i])
+            pick=val[i]+max(solve(i-1,w-wt[i],val,wt),solve(i,w-wt[i],val,wt));
+        int notpick=solve(i-1,w,val,wt);
+        return dp[i][w]=max(pick,notpick);
     }
     int knapSack(int N, int W, int val[], int wt[])
     {
-        this->N=N;
         dp.resize(N+1,vector<int>(W+1,-1));
-        return bt(0,W,val,wt);
+        return solve(N-1,W,val,wt);
     }
 };
 
