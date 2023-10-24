@@ -17,7 +17,7 @@ public:
             return dp[i][w];
         int pick=0;
         if(w>=wt[i])
-            pick=val[i]+max(solve(i-1,w-wt[i],val,wt),solve(i,w-wt[i],val,wt));
+            pick=val[i]+solve(i,w-wt[i],val,wt);
         int notpick=solve(i-1,w,val,wt);
         return dp[i][w]=max(pick,notpick);
     }
